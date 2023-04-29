@@ -12,11 +12,20 @@ const Header = ({ blacktheme, setblackTheme }: Ragaca): JSX.Element => {
   };
 
   return (
-    <div>
-      <h1>devfinder</h1>
-      <div>
-        <h3>{blacktheme ? "light" : "dark"}</h3>
+    <div className=" flex justify-between w-full md:max-w-[573px] md:mt-[140px]">
+      <h1 className={`${blacktheme ? "text-[#fff]" : "text-[#222731]"}`}>
+        devfinder
+      </h1>
+      <div className={` flex gap-4 items-center`}>
+        <h3
+          className={`text-[13px] font-bold leading-[19px] tracking-[2px] uppercase ${
+            blacktheme ? "text-[#fff]" : "text-[#4B6A9B]"
+          }`}
+        >
+          {blacktheme ? "light" : "dark"}
+        </h3>
         <img
+          className="w-5 h-5"
           onClick={ChangeTheme}
           src={blacktheme ? TheSun : ThemeMoon}
           alt="Theme changer photo"
