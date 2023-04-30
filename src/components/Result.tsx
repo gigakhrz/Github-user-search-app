@@ -1,53 +1,100 @@
-import AvatarImage from "../assets/Oval.png";
+import { useEffect } from "react";
 import "../style.css";
+import axios from "axios";
+import { userInfo } from "./types";
 
 interface ResultProps {
   blacktheme: Boolean;
+  search: string;
+  user: any;
+  setUser: (user: userInfo) => void;
+  setResult: (result: boolean) => void;
 }
 
-const Result = ({ blacktheme }: ResultProps): JSX.Element => {
+const Result = ({
+  blacktheme,
+  search,
+  user,
+  setUser,
+  setResult,
+}: ResultProps): JSX.Element => {
+  useEffect(() => {
+    const UserInfo = async () => {
+      try {
+        setResult(true);
+        const response = await axios.get(
+          `https://api.github.com/users/${search}`
+        );
+        const data = response.data;
+        setUser(data);
+      } catch (error) {
+        setResult(false);
+      }
+    };
+    UserInfo();
+  }, [search]);
+
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const createdAt = user?.created_at?.split("T")[0].split("-");
+  const year = createdAt ? createdAt[0] : undefined;
+  const month = createdAt ? months[createdAt[1] - 1] : undefined;
+  const day = createdAt ? createdAt[2] : undefined;
+
   return (
     <div
-      className={`result-container w-full flex flex-col gap-6 px-[24px] pt-[33px] pb-[49px] rounded-[15px] ${
+      className={`result-container w-full flex flex-col gap-6 px-[24px] pt-[33px] pb-[49px] rounded-[15px] md:max-w-[573px] md:p-[40px] md:gap-[30px] ${
         blacktheme ? "bg-[#1E2A47]" : "bg-white"
       }`}
     >
-      <div className="flex gap-5">
+      <div className="flex gap-5 md:gap-10 md:items-center">
         <img
-          src={AvatarImage}
+          src={user.avatar_url}
           alt="avatar img"
-          className=" w-[70px] h-[70px]  "
+          className=" w-[70px] h-[70px] rounded-[50%] md:w-[117px] md:h-[117px] "
         />
-        <div className="flex flex-col gap-[6px] ">
+        <div className="flex flex-col gap-[6px] md:gap-1">
           <div className="flex flex-col ">
             <h3
-              className={` font-bold text-[16px] leading-[23.7px] ${
+              className={` font-bold text-[16px] leading-[23.7px] md:text-[26px] md:leading-[38.5px] ${
                 blacktheme ? "text-white" : "text-[#2B3442]"
               }`}
             >
-              The Octocat
+              {user.name}
             </h3>
-            <h5 className=" font-norml text-[13px] leading-[19.25px] text-[#0079FF]">
-              @octocat
+            <h5 className=" font-norml text-[13px] leading-[19.25px] text-[#0079FF] md:text-[16px] md:leading-[23.7px]">
+              @{user.login}
             </h5>
           </div>
           <p
-            className={` font-norml text-[13px] leading-[19.25px] ${
+            className={` font-norml text-[13px] leading-[19.25px] md:text-[15px] md:leading-[22.2px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
-            Joined 25 Jan 2011
+            Joined {day} {month} {year}
           </p>
         </div>
       </div>
       {/* middle */}
       <p
-        className={` font-norml text-[13px] leading-[19.25px] mt-[10px] ${
+        className={` font-norml text-[13px] leading-[19.25px] mt-[10px] md:text-[15px] md:leading-[25px] md:mt-8px md:mb-2px ${
           blacktheme ? "text-white" : "text-[#4B6A9B]"
         }`}
       >
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
-        Quisque volutpat mattis eros.
+        {`${null ? user.bio : "This profile hans no bio"}`}
       </p>
 
       <div
@@ -55,61 +102,65 @@ const Result = ({ blacktheme }: ResultProps): JSX.Element => {
           blacktheme ? "bg-[#141D2F]" : "bg-[#F6F8FF]"
         } `}
       >
-        <div className="flex flex-col text-center ">
+        <div className="flex flex-col text-center gap-2 md:gap-[1px]">
           <p
-            className={` font-norml text-[11px] leading-[16.25px] mt-[10px] ${
+            className={` font-norml text-[11px] leading-[16.25px] md:text-[13px] md:leading-[19.25px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
             Repos
           </p>
           <h3
-            className={` font-bold text-[16px] leading-[23.7px] ${
+            className={` font-bold text-[16px] leading-[23.7px] md:text-[22px] md:leading-[32.6px] ${
               blacktheme ? "text-white" : "text-[#2B3442]"
             }`}
           >
-            8
+            {user.public_repos}
           </h3>
         </div>
 
-        <div className="flex flex-col text-center">
+        <div className="flex flex-col text-center gap-2 md:gap-[1px]">
           <p
-            className={` font-norml text-[11px] leading-[16.25px] mt-[10px] ${
+            className={` font-norml text-[11px] leading-[16.25px]  md:text-[13px] md:leading-[19.25px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
             Followers
           </p>
           <h3
-            className={` font-bold text-[16px] leading-[23.7px] ${
+            className={` font-bold text-[16px] leading-[23.7px] md:text-[22px] md:leading-[32.6px] ${
               blacktheme ? "text-white" : "text-[#2B3442]"
             }`}
           >
-            25
+            {user.followers}
           </h3>
         </div>
 
-        <div className="flex flex-col text-center">
+        <div className="flex flex-col text-center gap-2 md:gap-[1px]">
           <p
-            className={` font-norml text-[11px] leading-[16.25px] mt-[10px] ${
+            className={` font-norml text-[11px] leading-[16.25px]  md:text-[13px] md:leading-[19.25px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
             Following
           </p>
           <h3
-            className={` font-bold text-[16px] leading-[23.7px] ${
+            className={` font-bold text-[16px] leading-[23.7px] md:text-[22px] md:leading-[32.6px] ${
               blacktheme ? "text-white" : "text-[#2B3442]"
             }`}
           >
-            30
+            {user.following}
           </h3>
         </div>
       </div>
 
       {/* botton */}
-      <div className="flex flex-col gap-[17px]">
-        <div className="flex gap-[20px] items-center ">
+      <div className="flex flex-col gap-[17px] md:flex-row md:flex-wrap md:max-w-[540px] md:gap-0">
+        <div
+          className={`flex gap-[20px] items-center md:w-1/2 md:mb-[19px] ${
+            user.location === null ? "opacity-50" : "opacittu-100"
+          } `}
+        >
           <svg height="20" width="14" xmlns="http://www.w3.org/2000/svg">
             <path
               className={`${blacktheme ? "fill-white" : "fill-[#4B6A9B]"}`}
@@ -118,15 +169,19 @@ const Result = ({ blacktheme }: ResultProps): JSX.Element => {
             />
           </svg>
           <p
-            className={` font-norml text-[13px] leading-[19.25px] ${
+            className={` font-norml text-[13px] leading-[19.25px]  md:w-1/2 md:text-[15px] md:leading-[22.2px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
-            San Francisco
+            {`${user.location === null ? "Not available" : user.location}`}
           </p>
         </div>
 
-        <div className="flex gap-[20px] items-center ">
+        <div
+          className={`flex gap-[20px] items-center  md:w-1/2 md:mb-[19px] ${
+            user.blog === "" ? "opacity-50" : "opacittu-100"
+          } `}
+        >
           <svg height="20" width="20" xmlns="http://www.w3.org/2000/svg">
             <g fill="#4b6a9b">
               <path
@@ -140,15 +195,19 @@ const Result = ({ blacktheme }: ResultProps): JSX.Element => {
             </g>
           </svg>
           <p
-            className={` font-norml text-[13px] leading-[19.25px] ${
+            className={` font-norml text-[13px] leading-[19.25px] md:text-[15px] md:leading-[22.2px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
-            San Francisco
+            {`${user.blog === "" ? "Not available" : user.blog}`}
           </p>
         </div>
 
-        <div className="flex gap-[20px] items-center ">
+        <div
+          className={`flex gap-[20px] items-center  md:w-1/2  ${
+            user.twitter_username === null ? "opacity-50" : "opacittu-100"
+          } `}
+        >
           <svg height="18" width="20" xmlns="http://www.w3.org/2000/svg">
             <path
               className={`${blacktheme ? "fill-white" : "fill-[#4B6A9B]"}`}
@@ -157,15 +216,23 @@ const Result = ({ blacktheme }: ResultProps): JSX.Element => {
             />
           </svg>
           <p
-            className={` font-norml text-[13px] leading-[19.25px] ${
+            className={` font-norml text-[13px] leading-[19.25px] md:text-[15px] md:leading-[22.2px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
-            San Francisco
+            {`${
+              user.twitter_username === null
+                ? "Not available"
+                : user.twitter_username
+            }`}
           </p>
         </div>
 
-        <div className="flex gap-[20px] items-center ">
+        <div
+          className={`flex gap-[20px] items-center ${
+            user.company === null ? "opacity-50" : "opacittu-100"
+          } `}
+        >
           <svg height="20" width="20" xmlns="http://www.w3.org/2000/svg">
             <g fill="#4b6a9b">
               <path
@@ -175,11 +242,11 @@ const Result = ({ blacktheme }: ResultProps): JSX.Element => {
             </g>
           </svg>
           <p
-            className={` font-norml text-[13px] leading-[19.25px] ${
+            className={` font-norml text-[13px] leading-[19.25px] md:text-[15px] md:leading-[22.2px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
-            San Francisco
+            {`${user.company === null ? "Not available" : user.company}`}
           </p>
         </div>
       </div>

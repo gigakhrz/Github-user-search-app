@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { userInfo } from "./components/types";
 
 import Header from "./components/Header";
 import Search from "./components/search";
@@ -7,7 +8,9 @@ import Result from "./components/Result";
 function App(): JSX.Element {
   const [blacktheme, setblackTheme] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("gigakhrz");
-  console.log(search);
+  const [user, setUser] = useState<userInfo | []>([]);
+  const [result, setResult] = useState<boolean>(true);
+  console.log(user);
   return (
     <div>
       <div
@@ -17,9 +20,15 @@ function App(): JSX.Element {
       >
         <Header setblackTheme={setblackTheme} blacktheme={blacktheme} />
 
-        <Search blacktheme={blacktheme} setSearch={setSearch} />
+        <Search blacktheme={blacktheme} setSearch={setSearch} result={result} />
 
-        <Result blacktheme={blacktheme} />
+        <Result
+          blacktheme={blacktheme}
+          search={search}
+          user={user}
+          setUser={setUser}
+          setResult={setResult}
+        />
       </div>
     </div>
   );

@@ -13,7 +13,11 @@ const Header = ({ blacktheme, setblackTheme }: HeaderProps): JSX.Element => {
 
   return (
     <div className=" flex justify-between w-full md:max-w-[573px] md:mt-[140px]">
-      <h1 className={`${blacktheme ? "text-[#fff]" : "text-[#222731]"}`}>
+      <h1
+        className={`${
+          blacktheme ? "text-[#fff]" : "text-[#222731]"
+        } font-bold text-[26px] leading-[38.5px]`}
+      >
         devfinder
       </h1>
       <div className={` flex gap-4 items-center`}>
