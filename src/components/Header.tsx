@@ -1,12 +1,12 @@
 import TheSun from "../assets/icon-sun.svg";
 import ThemeMoon from "../assets/icon-moon.svg";
 
-interface Ragaca {
+interface HeaderProps {
   blacktheme: Boolean;
   setblackTheme: (blacktheme: boolean) => void;
 }
 
-const Header = ({ blacktheme, setblackTheme }: Ragaca): JSX.Element => {
+const Header = ({ blacktheme, setblackTheme }: HeaderProps): JSX.Element => {
   const ChangeTheme = () => {
     setblackTheme(!blacktheme);
   };

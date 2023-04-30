@@ -1,12 +1,12 @@
 import SearchIcon from "../assets/icon-search.svg";
 import "../style.css";
 
-interface MeoreRagaca {
+interface SearchProps {
   setSearch: (search: string) => void;
   blacktheme: Boolean;
 }
 
-const Search = ({ blacktheme, setSearch }: MeoreRagaca): JSX.Element => {
+const Search = ({ blacktheme, setSearch }: SearchProps): JSX.Element => {
   const inputValue = (e: any): void => {
     setSearch(e.target.value);
   };

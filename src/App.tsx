@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Header from "./components/Header";
 import Search from "./components/search";
+import Result from "./components/Result";
 
 function App(): JSX.Element {
   const [blacktheme, setblackTheme] = useState<boolean>(false);
@@ -15,9 +16,10 @@ function App(): JSX.Element {
         }`}
       >
         <Header setblackTheme={setblackTheme} blacktheme={blacktheme} />
-        <div className="w-full flex flex-col items-center gap-4">
-          <Search blacktheme={blacktheme} setSearch={setSearch} />
-        </div>
+
+        <Search blacktheme={blacktheme} setSearch={setSearch} />
+
+        <Result blacktheme={blacktheme} />
       </div>
     </div>
   );
