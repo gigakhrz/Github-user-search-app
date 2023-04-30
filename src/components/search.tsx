@@ -26,7 +26,7 @@ const Search = ({
     >
       <img src={SearchIcon} />
       <input
-        className={`w-full border-none outline-none font-mono font-normal text-[11px] leading-[25px] bg-transparent md:text-[18px]
+        className={`w-full border-none outline-none font-mono font-normal text-[11px] leading-[25px] cursor-pointer bg-transparent md:text-[18px]
         placeholder: ${
           blacktheme
             ? "text-white placeholder-white"

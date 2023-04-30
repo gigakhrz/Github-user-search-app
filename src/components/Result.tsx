@@ -81,7 +81,7 @@ const Result = ({
             </h5>
           </div>
           <p
-            className={` font-norml text-[13px] leading-[19.25px] md:text-[15px] md:leading-[22.2px] ${
+            className={` font-norml text-[13px] leading-[19.25px] md:text-[15px] md:leading-[22.2px] lg:mt-[6px] ${
               blacktheme ? "text-white" : "text-[#4B6A9B]"
             }`}
           >
@@ -197,8 +197,8 @@ const Result = ({
           </svg>
           <p
             className={` font-norml text-[13px] leading-[19.25px] md:text-[15px] md:leading-[22.2px] ${
-              blacktheme ? "text-white" : "text-[#4B6A9B]"
-            }`}
+              user.blog === "" ? "cursor" : "cursor-pointer"
+            } ${blacktheme ? "text-white" : "text-[#4B6A9B]"}`}
           >
             {`${user.blog === "" ? "Not available" : user.blog}`}
           </p>

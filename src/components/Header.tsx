@@ -29,7 +29,7 @@ const Header = ({ blacktheme, setblackTheme }: HeaderProps): JSX.Element => {
           {blacktheme ? "light" : "dark"}
         </h3>
         <img
-          className="w-5 h-5"
+          className="w-5 h-5 cursor-pointer"
           onClick={ChangeTheme}
           src={blacktheme ? TheSun : ThemeMoon}
           alt="Theme changer photo"
