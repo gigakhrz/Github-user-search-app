@@ -12,7 +12,7 @@ const Header = ({ blacktheme, setblackTheme }: HeaderProps): JSX.Element => {
   };
 
   return (
-    <div className=" flex justify-between w-full md:max-w-[573px] md:mt-[140px]">
+    <div className=" flex justify-between w-full md:max-w-[573px] md:mt-[140px] lg:max-w-[730px] ">
       <h1
         className={`${
           blacktheme ? "text-[#fff]" : "text-[#222731]"

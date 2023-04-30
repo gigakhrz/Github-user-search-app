@@ -56,7 +56,8 @@ const Result = ({
 
   return (
     <div
-      className={`result-container w-full flex flex-col gap-6 px-[24px] pt-[33px] pb-[49px] rounded-[15px] md:max-w-[573px] md:p-[40px] md:gap-[30px] ${
+      className={`result-container w-full flex flex-col gap-6 px-[24px] pt-[33px] pb-[49px] rounded-[15px] md:max-w-[573px] 
+      md:p-[40px] md:gap-[30px]  lg:max-w-[730px] lg:p-12 lg:items-end lg:relative ${
         blacktheme ? "bg-[#1E2A47]" : "bg-white"
       }`}
     >
@@ -64,12 +65,12 @@ const Result = ({
         <img
           src={user.avatar_url}
           alt="avatar img"
-          className=" w-[70px] h-[70px] rounded-[50%] md:w-[117px] md:h-[117px] "
+          className=" w-[70px] h-[70px] rounded-[50%] md:w-[117px] md:h-[117px] lg:absolute lg:top-12 lg:left-12"
         />
-        <div className="flex flex-col gap-[6px] md:gap-1">
+        <div className="flex flex-col gap-[6px] md:gap-1 lg:flex-row lg:justify-between lg:w-full lg:max-w-[480px] lg:min-w-[480px]">
           <div className="flex flex-col ">
             <h3
-              className={` font-bold text-[16px] leading-[23.7px] md:text-[26px] md:leading-[38.5px] ${
+              className={` font-bold text-[16px] leading-[23.7px] md:text-[26px] md:leading-[38.5px] lg:max-w-[220px] ${
                 blacktheme ? "text-white" : "text-[#2B3442]"
               }`}
             >
@@ -90,7 +91,7 @@ const Result = ({
       </div>
       {/* middle */}
       <p
-        className={` font-norml text-[13px] leading-[19.25px] mt-[10px] md:text-[15px] md:leading-[25px] md:mt-8px md:mb-2px ${
+        className={` font-norml text-[13px] leading-[19.25px] mt-[10px] md:text-[15px] md:leading-[25px] md:mt-8px md:mb-2px lg:max-w-[480px] lg:min-w-[480px] ${
           blacktheme ? "text-white" : "text-[#4B6A9B]"
         }`}
       >
@@ -98,7 +99,7 @@ const Result = ({
       </p>
 
       <div
-        className={`w-full flex h-[85px] rounded-[10px] items-center justify-around ${
+        className={`w-full flex h-[85px] rounded-[10px] items-center justify-around lg:max-w-[480px] lg:min-w-[480px] ${
           blacktheme ? "bg-[#141D2F]" : "bg-[#F6F8FF]"
         } `}
       >
@@ -155,7 +156,7 @@ const Result = ({
       </div>
 
       {/* botton */}
-      <div className="flex flex-col gap-[17px] md:flex-row md:flex-wrap md:max-w-[540px] md:gap-0">
+      <div className="flex flex-col gap-[17px] md:flex-row md:flex-wrap md:max-w-[540px] md:gap-0 lg:max-w-[480px] lg:min-w-[480px] ">
         <div
           className={`flex gap-[20px] items-center md:w-1/2 md:mb-[19px] ${
             user.location === null ? "opacity-50" : "opacittu-100"

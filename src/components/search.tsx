@@ -20,7 +20,7 @@ const Search = ({
   return (
     <form
       onSubmit={inputValue}
-      className={`relative box w-full flex items-center justify-center gap-2 py-[7px] pr-[7px] pl-[16px] rounded-[15px]  md:max-w-[573px] md:gap-[27px] md:pl-[36px] md:py-[9.5px] md:mr-[10px] ${
+      className={`relative box w-full flex items-center justify-center gap-2 py-[7px] pr-[7px] pl-[16px] rounded-[15px]  md:max-w-[573px] md:gap-[27px] md:pl-[36px] md:py-[9.5px] md:mr-[10px]  lg:max-w-[730px]  ${
         blacktheme ? "bg-[#1E2A47]" : "bg-[white]"
       }`}
     >
